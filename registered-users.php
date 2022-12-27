@@ -57,15 +57,7 @@ Free Bootstrap 5 HTML Template
                     </div>
 
                     <div class="col-lg-3 col-md-3 col-12 ms-auto">
-                        <ul class="social-icon">
-                            <li><a href="https://facebook.com/tooplate" class="social-icon-link bi-facebook"></a></li>
-
-                            <li><a href="https://pinterest.com/tooplate" class="social-icon-link bi-pinterest"></a></li>
-
-                            <li><a href="https://twitter.com/minthu" class="social-icon-link bi-twitter"></a></li>
-
-                            <li><a href="https://www.youtube.com/tooplate" class="social-icon-link bi-youtube"></a></li>
-                        </ul>
+                        
                     </div>
 
                 </div>
@@ -75,7 +67,7 @@ Free Bootstrap 5 HTML Template
         <nav class="navbar navbar-expand-lg bg-white shadow-lg">
             <div class="container">
 
-                <a href="#" class="navbar-brand">Kshemankari College <span class="text-danger"></br>Of Nursing</span></a>
+                <a href="#" class="navbar-brand">Kshemankari College Of Nursing<span class="text-danger"></br>Admin Page</span></a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -84,7 +76,7 @@ Free Bootstrap 5 HTML Template
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-							<a class="nav-link click-scroll" href='' >Register</a>
+							<a class="nav-link click-scroll" href='' >Admin</a>
 						</li>
 						<li>
 							<a class="nav-link click-scroll" href="/CollegeWebsite" >Home</a>
@@ -97,18 +89,33 @@ Free Bootstrap 5 HTML Template
 
         <main>
 
-            <section class="hero">
+            
                 <div class="container-fluid h-100">
+				<form method="post">
+					<input type="text" placeholder="Admin id" name="adminid"/>
+					<input type="password" placeholder="Admin password" name="password"/>
+					<input type="submit" name="View"
+							value="View"/>
+					
+					
+				</form>
                     <?php 
+					if(isset($_POST['View'])) {
+						$adminId = $_POST['adminid'];
+						$pwd = $_POST['password'];
+						if($adminId != 'kcnadmin' || $pwd != 'kcnadminblr0!'){
+							echo 'Wrong credentials';
+							exit();
+						}
 						session_start(); 
 						include "db_conn.php";
 
-						$sql = "SELECT name, gender, email, mobile FROM users";
+						$sql = "SELECT id, name, gender, email, mobile FROM users";
 						$result = mysqli_query($conn, $sql);
 						echo 'Total number of students registered: '; echo  mysqli_num_rows($result);
 
 						$c=0;
-						$myarray = ["name", "gender", "email", "mobile"];
+						$myarray = ["id", "name", "gender", "email", "mobile"];
 
 
 						echo "<table class='table table-striped table-bordered' style='border:1px solid #ccc;'>\n";
@@ -131,13 +138,15 @@ Free Bootstrap 5 HTML Template
 						}
 						echo "</tbody>\n";
 						echo "</table>";
-						
+						echo '<a href="./download.php" class="m-3 custom-btn btn custom-link">Download to CSV</a>';
+						echo '<a href="./download-image.php" class="m-3 custom-btn btn custom-link">View Certificates</a>';
+					}	
 						?>
-						<a class="m-3 custom-btn btn custom-link">Download to CSV</a>
-						<a href="./download-image.php" class="m-3 custom-btn btn custom-link">View Certificates</a>
+						
+						
                 </div>
 				
-            </section>
+            
 
 			
             

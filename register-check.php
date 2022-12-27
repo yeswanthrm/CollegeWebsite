@@ -35,13 +35,28 @@ if (isset($_POST['gender']) && isset($_POST['email'])
         header("Location: register.php?error=email is required&$user_data");
 	    exit();
 	}
+	else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header("Location: register.php?error=email is not in the correct format&$user_data");
+	    exit();
+	}
 	else if(empty($mobile)){
         header("Location: register.php?error=Re email is required&$user_data");
 	    exit();
 	}
-
+	else if(!preg_match('/^[0-9]{10}+$/', $mobile)) {
+        header("Location: register.php?error=mobile number should be a 10 digited number&$user_data");
+	    exit();
+	}
 	else if(empty($name)){
         header("Location: register.php?error=Name is required&$user_data");
+	    exit();
+	}
+	else if(empty($imageFileTypeSSC)){
+        header("Location: register.php?error=SSC certificate is required &$user_data");
+	    exit();
+	}
+	else if(empty($imageFileTypePUC)){
+        header("Location: register.php?error=PUC certificate is required&$user_data");
 	    exit();
 	}
 	// Check file size
@@ -49,11 +64,11 @@ if (isset($_POST['gender']) && isset($_POST['email'])
 		 header("Location: register.php?error=SSC certificate image is too large. File size should not exced 500 KB&$user_data");
 	     exit();
 	}
-	else if ($_FILES["ssc"]["size"] > 500000) {
+	else if ($_FILES["puc"]["size"] > 500000) {
 		 header("Location: register.php?error=PUC certificate image is too large. File size should not exced 500 KB&$user_data");
 	     exit();
 	}
-	else if ($_FILES["ssc"]["size"] > 500000) {
+	else if ($_FILES["caste"]["size"] > 500000) {
 		 header("Location: register.php?error=Caste certificate image is too large. File size should not exced 500 KB&$user_data");
 	     exit();
 	}
@@ -67,7 +82,7 @@ if (isset($_POST['gender']) && isset($_POST['email'])
 	     header("Location: register.php?error=Only JPG and PNG files are allowed&$user_data");
 	     exit();
 	}
-	else if($imageFileTypeCaste != "image/jpeg" && $imageFileTypeCaste != "image/png") {
+	else if(!empty($imageFileTypeCaste) && $imageFileTypeCaste != "image/jpeg" && $imageFileTypeCaste != "image/png") {
 		 header("Location: register.php?error=Only JPG and PNG files are allowed&$user_data");
 	     exit();
 	}
