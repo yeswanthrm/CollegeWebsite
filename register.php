@@ -98,13 +98,13 @@ Free Bootstrap 5 HTML Template
 
         <main>
 
-            <section class="hero">
+            <section>
                 <div class="container-fluid h-100">
                     <div class="row h-100">
 						<div class="col-lg-4 col-md-4 col-12 ms-auto">
 						</div>
 						<div class="col-lg-4 col-md-4 col-12 ms-auto">
-							<form action="register-check.php" method="post">
+							<form action="register-check.php" method="post" enctype="multipart/form-data">
 								<h2>Register</h2>
 								
 								  <?php if (isset($_GET['success'])) { ?>
@@ -124,16 +124,11 @@ Free Bootstrap 5 HTML Template
 								  <?php }?>
 
 								  <label>Gender</label>
-								  <?php if (isset($_GET['gender'])) { ?>
-									   <input type="text" 
-											  name="gender" 
-											  class="form-control"
-											  value="<?php echo $_GET['gender']; ?>"><br>
-								  <?php }else{ ?>
-									   <input type="text" 
-											  name="gender" 
-											  class="form-control"<br>
-								  <?php }?>
+								  <select id="gender" name="gender" class="form-control">
+									  <option value="Male">Male</option>
+									  <option value="Female">Female</option>
+								  </select>
+								  
 
 
 								<label>Email</label>
@@ -145,6 +140,22 @@ Free Bootstrap 5 HTML Template
 								  <input type="text" 
 										 name="mobile" 
 										 class="form-control"<br>
+										 
+								  <label>SSC(10th Std.) Certificate</label>
+								  <input type="File" 
+										 name="ssc" 
+										 class="form-control"<br>
+										 
+								  <label>PUC(12th Std.) Certificate</label>
+								  <input type="File" 
+										 name="puc" 
+										 class="form-control"<br>
+										 
+								  <label>Caste Certificate</label>
+								  <input type="File" 
+										 name="caste" 
+										 class="form-control"<br>
+										 
 								<?php if (isset($_GET['error'])) { ?>
 									<p class="error"><?php echo $_GET['error']; ?></p>
 								<?php } ?>
@@ -152,7 +163,8 @@ Free Bootstrap 5 HTML Template
 								<?php if (isset($_GET['success'])) { ?>
 									   <p class="success" style="color: green"><?php echo $_GET['success']; ?></p>
 								  <?php } ?>
-								<button type="submit" class="custom-btn btn custom-link">Register</button>
+								 
+								<button type="submit" class="m-3 custom-btn btn custom-link">Register</button>
 							 </form>
 						</div>
 						<div class="col-lg-4 col-md-4 col-12 ms-auto">

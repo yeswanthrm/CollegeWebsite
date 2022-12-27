@@ -111,9 +111,9 @@ Free Bootstrap 5 HTML Template
 						$myarray = ["name", "gender", "email", "mobile"];
 
 
-						echo "<table style='border:1px solid #ccc;'>\n";
+						echo "<table class='table table-striped table-bordered' style='border:1px solid #ccc;'>\n";
 						echo "<thead>\n";
-						echo "<tr>\n";
+						echo "<tr class='btn-primary'>\n";
 						foreach($myarray as $columnheading) {
 							echo "<th>".$columnheading."</th>\n";
 						}
@@ -131,23 +131,10 @@ Free Bootstrap 5 HTML Template
 						}
 						echo "</tbody>\n";
 						echo "</table>";
-						$f = fopen('php://memory', 'w'); 
-						$filename = 'data.csv';
-						// loop over the input array
-						foreach ($result as $line) { 
-							// generate csv lines from the inner arrays
-							fputcsv($f, $line, ';'); 
-						}
-						// reset the file pointer to the start of the file
-						fseek($f, 0);
-						// tell the browser it's going to be a csv file
-						header('Content-Type: text/csv');
-						// tell the browser we want to save it instead of displaying it
-						header('Content-Disposition: attachment; filename="'.$filename.'";');
-						// make php send the generated csv lines to the browser
-						fpassthru($f);
-				
+						
 						?>
+						<a class="m-3 custom-btn btn custom-link">Download to CSV</a>
+						<a href="./download-image.php" class="m-3 custom-btn btn custom-link">View Certificates</a>
                 </div>
 				
             </section>
