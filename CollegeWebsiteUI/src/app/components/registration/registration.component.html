@@ -1,0 +1,154 @@
+<header class="site-header">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-lg-3 col-md-5 col-7">
+                <p class="text-white mb-0">
+                    <i class="bi-clock site-header-icon me-2"></i>
+                    Mon-Fri 10:00-19:00
+                </p>
+            </div>
+
+            <div class="col-lg-2 col-md-3 col-5">
+                <p class="text-white mb-0">
+                    <a href="tel: 240-480-9600" class="text-white">
+                        <i class="bi-telephone site-header-icon me-2"></i>
+                        +91 9491110000
+                    </a>
+                </p>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-12 ms-auto">
+                <ul class="social-icon">
+                    <li><a href="https://facebook.com/tooplate" class="social-icon-link bi-facebook"></a></li>
+
+                    <li><a href="https://pinterest.com/tooplate" class="social-icon-link bi-pinterest"></a></li>
+
+                    <li><a href="https://twitter.com/minthu" class="social-icon-link bi-twitter"></a></li>
+
+                    <li><a href="https://www.youtube.com/tooplate" class="social-icon-link bi-youtube"></a></li>
+                    <li><a href="./registered-users.html" class="social-icon-link bi bi-gear"></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</header>
+<div id="sticky-wrapper" class="sticky-top"><nav class="navbar navbar-expand-lg bg-white shadow-lg">
+    <div class="container">
+
+        <a href="#" class="navbar-brand">Kshemankari College <span class="text-danger"><br>Of Nursing</span></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li *ngFor="let item of menuItem">
+                    <a class="nav-link click-scroll" [ngClass]="{ 'active': item?.selected }" href={{item.section}} (click)="highlight(item.name)"><small class="small-title"></small> {{item.name}}</a>
+                </li>
+            </ul>
+        <div>
+                
+    </div>
+</div></div></nav></div>
+<main>
+
+            
+    <section>
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col-lg-4 col-md-4 col-12 ms-auto">
+                </div>
+                <div class="col-lg-4 col-md-4 col-12 ms-auto">
+                    <form #formid>
+                        <h2>Register</h2>
+                        
+                         
+
+                          <label>Name</label>
+                          
+                               <input type="text" 
+                               [(ngModel)] ="Name" 
+                               name ="Name" 
+                                      class="form-control"/>
+
+                          <label>Gender</label>
+                          <select id="gender" [(ngModel)]="Gender" name ="Gender" class="form-control">
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                          </select>
+                          
+
+
+                        <label>Email</label>
+                        <input type="text" 
+                        [(ngModel)]="Email" name ="Email"
+                                 class="form-control"/>
+
+                          <label>Mobile</label>
+                          <input type="text" name ="MobileNumber"
+                          [(ngModel)]="MobileNumber" 
+                                 class="form-control"/>
+                                 
+                          <label>SSC(10th Std.) Certificate</label>
+                          <input type="File" name ="SSCCertificate" (change)="onSSCCertSelected($event)"
+                                 class="form-control"/>
+                                 
+                          <label>PUC(12th Std.) Certificate</label>
+                          <input type="File" name ="PUCCertificate" (change)="onPUCCertSelected($event)"
+                                 class="form-control"/>
+                                 
+                          <label>Caste Certificate</label>
+                          <input type="File" name ="CasteCertificate" (change)="onCasteCertSelected($event)"
+                                 class="form-control"/>
+                                 
+                        
+                        <!--p class="success" style="color: green"></p-->
+                        
+                         
+                        <button (click)="submit()" type="submit" name="submit" class="m-3 custom-btn btn custom-link">Register</button>
+                     </form>
+                </div>
+                <div class="col-lg-4 col-md-4 col-12 ms-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+
+
+
+
+</main>
+
+<footer class="site-footer">
+<div class="container">
+    <div class="row">
+            
+        <div class="col-lg-6 col-12">
+            <div class="site-footer-wrap d-flex align-items-center">
+                <p class="copyright-text mb-0 me-4">Copyright © 2023 KSNC</p>
+
+                <ul class="social-icon">
+                    <li><a href="https://facebook.com/tooplate" class="social-icon-link bi-facebook"></a></li>
+
+                    <li><a href="https://pinterest.com/tooplate" class="social-icon-link bi-pinterest"></a></li>
+
+                    <li><a href="https://twitter.com/minthu" class="social-icon-link bi-twitter"></a></li>
+
+                    <li><a href="https://www.youtube.com/tooplate" class="social-icon-link bi-youtube"></a></li>
+                </ul>
+                
+            </div>
+        </div>
+        
+        <div class="col-lg-6 col-12">
+            <p class="copyright-text mb-0 me-4">All rights reserved </p>
+        </div>
+
+    </div>
+</div>
+</footer>

@@ -95,7 +95,7 @@ namespace CollegeWebsiteAPI.Controllers
 
             if (result > 0)
             {
-                return Ok("Registration Sucessful");
+                return Ok("Registration Successful");
             }
             else
             {
