@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "h3gFFLvetX5+lciz0vUrZQLUt1fDzZh6PXJcP/fvR3U=",
+  "Hash": "xDfG/LXPuo2GhiBDzDXmf1aWr6yUOy8gtABK4CBBaLY=",
   "Source": "CollegeWebsiteAPI",
   "BasePath": "_content/CollegeWebsiteAPI",
   "Mode": "Default",
@@ -731,12 +731,12 @@
       "OriginalItemSpec": "wwwroot\\jason-goodman-MUZFKa_mttU-unsplash.dbe939d971032315.jpg"
     },
     {
-      "Identity": "C:\\Users\\TOSHIBA\\source\\repos\\CollegeWebsiteAngular\\CollegeWebsiteAPI\\wwwroot\\main.36ca69dd84873c9b.js",
+      "Identity": "C:\\Users\\TOSHIBA\\source\\repos\\CollegeWebsiteAngular\\CollegeWebsiteAPI\\wwwroot\\main.13c6bf7061d8822c.js",
       "SourceId": "CollegeWebsiteAPI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\TOSHIBA\\source\\repos\\CollegeWebsiteAngular\\CollegeWebsiteAPI\\wwwroot\\",
       "BasePath": "_content/CollegeWebsiteAPI",
-      "RelativePath": "main.36ca69dd84873c9b.js",
+      "RelativePath": "main.13c6bf7061d8822c.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -745,7 +745,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\main.36ca69dd84873c9b.js"
+      "OriginalItemSpec": "wwwroot\\main.13c6bf7061d8822c.js"
     },
     {
       "Identity": "C:\\Users\\TOSHIBA\\source\\repos\\CollegeWebsiteAngular\\CollegeWebsiteAPI\\wwwroot\\polyfills.0b6613e52cbbc512.js",

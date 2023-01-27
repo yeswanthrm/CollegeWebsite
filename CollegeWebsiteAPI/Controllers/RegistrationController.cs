@@ -51,15 +51,21 @@ namespace CollegeWebsiteAPI.Controllers
                                              u.MobileNumber.ToLower().Contains(searchQuery.ToLower())
                     );
                 }
+                try
+                {
+                    query = query.OrderByDescending(u => u.Id);
 
-                query = query.OrderByDescending(u => u.Id);
-                
-                var users = await PagedList<ViewAllRegistrationsDto>.CreateAsync(query.ProjectTo<ViewAllRegistrationsDto>(_mapper
-                    .ConfigurationProvider).AsNoTracking(),
-                        userParams.PageNumber, userParams.PageSize);
-                Response.AddPaginationHeader(users.CurrentPage, users.PageSize,
-                users.TotalCount, users.TotalPages);
-                return Ok(users);
+                    var users = await PagedList<ViewAllRegistrationsDto>.CreateAsync(query.ProjectTo<ViewAllRegistrationsDto>(_mapper
+                        .ConfigurationProvider).AsNoTracking(),
+                            userParams.PageNumber, userParams.PageSize);
+                    Response.AddPaginationHeader(users.CurrentPage, users.PageSize,
+                    users.TotalCount, users.TotalPages);
+                    return Ok(users);
+                }
+                catch(Exception ex)
+                {
+                    return Ok(ex.Message);
+                }
             }
             else
             {
@@ -71,35 +77,43 @@ namespace CollegeWebsiteAPI.Controllers
         public async Task<ActionResult<string>> Register([FromForm] RegisterDto registerDto)
         {
             var registration = _mapper.Map<Registration>(registerDto);
+            try
+            {
 
 
-            registration.SSCCertificate = await FileUpload(registerDto.SSCCertificate);
 
-            registration.PUCCertificate = await FileUpload(registerDto.PUCCertificate);
-            if (registerDto.CasteCertificate != null)
-            {
-                registration.CasteCertificate = await FileUpload(registerDto.CasteCertificate);
-            }
-            if(registration.SSCCertificate == "invalidType" || registration.PUCCertificate == "invalidType" ||
-                registration.CasteCertificate == "invalidType")
-            {
-                return BadRequest("only JGP, PNG or PDF documents are allowed");
-            }
-            if (registration.SSCCertificate == "tooBig" || registration.PUCCertificate == "tooBig" ||
-                registration.CasteCertificate == "tooBig")
-            {
-                return BadRequest("File size can'r exceed 200KB");
-            }
-            _context.Registrations.Add(registration);
-            var result = await _context.SaveChangesAsync();
+                registration.SSCCertificate = await FileUpload(registerDto.SSCCertificate);
 
-            if (result > 0)
-            {
-                return Ok("Registration Successful");
+                registration.PUCCertificate = await FileUpload(registerDto.PUCCertificate);
+                if (registerDto.CasteCertificate != null)
+                {
+                    registration.CasteCertificate = await FileUpload(registerDto.CasteCertificate);
+                }
+                if (registration.SSCCertificate == "invalidType" || registration.PUCCertificate == "invalidType" ||
+                    registration.CasteCertificate == "invalidType")
+                {
+                    return BadRequest("only JGP, PNG or PDF documents are allowed");
+                }
+                if (registration.SSCCertificate == "tooBig" || registration.PUCCertificate == "tooBig" ||
+                    registration.CasteCertificate == "tooBig")
+                {
+                    return BadRequest("File size can'r exceed 200KB");
+                }
+                _context.Registrations.Add(registration);
+                var result = await _context.SaveChangesAsync();
+
+                if (result > 0)
+                {
+                    return Ok("Registration Successful");
+                }
+                else
+                {
+                    return BadRequest("Error occured during registration");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("Error occured during registration");
+                return BadRequest(ex.Message);
             }
             
         }
@@ -116,14 +130,17 @@ namespace CollegeWebsiteAPI.Controllers
                 return "tooBig";
             }
             Guid id = Guid.NewGuid();
-            
-            
-            string uniqueFileName = id.ToString() + extension;
-            var filePath = Path.Combine(_environment.ContentRootPath, "Images", uniqueFileName);
-            using var fileStream = new FileStream(filePath, FileMode.Create);
-            await file.CopyToAsync(fileStream);
-            return uniqueFileName;
-
+            try { 
+                string uniqueFileName = id.ToString() + extension;
+                var filePath = Path.Combine(_environment.ContentRootPath, "Images", uniqueFileName);
+                using var fileStream = new FileStream(filePath, FileMode.Create);
+                await file.CopyToAsync(fileStream);
+                return uniqueFileName;
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
         }
     }
 }

@@ -25,6 +25,7 @@ export class AdminComponent {
     this.menuItem.forEach(x=> x.selected = x.name == itemName ? true : false);
   }
   view(){
+    console.log(environment.production);
     this.id = 'kcnadmin';
     this.pwd = 'kcnadminblr0!';
     const url = this.baseUrl + 'Registration?Username='+this.id +'&Password='+this.pwd+ '&SearchQuery='+this.query;

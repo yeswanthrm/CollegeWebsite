@@ -36,5 +36,22 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 app.MapControllers();
 app.MapFallbackToController("Index", "Fallback");
+using var scope = app.Services.CreateScope();
+var services = scope.ServiceProvider;
+try
+{
+    var context = services.GetRequiredService<DataContext>();
+    context.Database.MigrateAsync();
+    string imageFolder = Path.Combine(Directory.GetCurrentDirectory(), "Images");
+    if (!Directory.Exists(imageFolder))
+    {
+        DirectoryInfo folder = Directory.CreateDirectory(imageFolder);
+    }           
+    
+}
+catch(Exception ex)
+{
+    Console.WriteLine(ex.ToString());
+}
 
 app.Run();
